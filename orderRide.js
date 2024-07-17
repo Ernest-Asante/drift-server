@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
     try {
       const { data, error } = await supabase
         .from('driver')
-        .update({ ride_request: payload})
+        .update({ ride_request: payload, request: true})
         .eq('id', driverId);
 
       if (error) {
@@ -80,7 +80,7 @@ router.post('/', async (req, res) => {
       }
 
 
-      res.status(200).send({ "message": "Request underway" });
+      //res.status(200).send({ "message": "Request underway" });
     } catch (error) {
       res.status(500).send({ "error": 'Failed to initiate request' });
     }

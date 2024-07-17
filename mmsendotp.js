@@ -9,8 +9,8 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const infobipClient = new Infobip({
-  baseUrl: 'xl36j3.api.infobip.com',
-  apiKey: '5842f8416c51516d270ca62f98d3b723-71c8c08d-71ff-49b1-8ba2-51de59819997',
+  baseUrl: 'qyngx3.api.infobip.com',
+  apiKey: '68280bbbfabbc6211283b0f4363def24-7e223ec0-096f-4ae2-ab1a-f10a380582ea',
   authType: AuthType.ApiKey,
 });
 
