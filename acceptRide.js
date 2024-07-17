@@ -7,16 +7,45 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 router.post('/', async (req, res) => {
-  const { userId, driverId } = req.body;
+  const { userId, driverId, fare, model, color, plate } = req.body;
+
+  function generateRandomDuration() {
+    const minMinutes = 4;
+    const maxMinutes = 10;
+
+    // Generate a random number between minMinutes and maxMinutes (inclusive)
+    const randomMinutes = Math.floor(Math.random() * (maxMinutes - minMinutes + 1)) + minMinutes;
+
+    return `${randomMinutes} minutes`;
+}
+
+// Example usage:
+const duration = generateRandomDuration();
+
+function generateRandom10DigitNumber() {
+  let numDigits = 10;
+  let randomNumber = '';
+
+  for (let i = 0; i < numDigits; i++) {
+      randomNumber += Math.floor(Math.random() * 10); // Append a random digit (0-9)
+  }
+
+  return randomNumber;
+}
+
+// Generate and output a random 10-digit number
+const tripId = generateRandom10DigitNumber();
 
   const payload = {
    
     userId: userId,
     driverId: driverId,
-    time:" 4 minutes",
-    model: "White KIA Picanto",
-    Number: "GH-3455-22",
-    tripId:0,
+    time: duration,
+    fare: fare,
+    model:model,
+    color: color,
+    plate: plate,
+    tripId:tripId,
     
   }
 

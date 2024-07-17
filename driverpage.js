@@ -16,9 +16,9 @@ router.post('/', async (req, res) => {
   try {
     const {data: insertData, error: insertError } = await supabase
       .from('driver')  
-      .select('ride_request') 
+      .select('*') 
       .eq(column, identity) 
-      
+       
      
      
       if (insertError) { 

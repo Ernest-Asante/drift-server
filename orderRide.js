@@ -13,8 +13,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Define the /verifyotp route
 router.post('/', async (req, res) => {
-  const { userId, driverId, fare, from, to, tripId } = req.body;
+  const { userId, driverId, fare, from, fromLat, toLat, fromLong,toLong, to} = req.body;
   
+ 
   const payload = {
    
       riderId: userId,
@@ -22,8 +23,29 @@ router.post('/', async (req, res) => {
       fare: fare,
       from: from,
       to: to,
-      tripId: tripId,
+      fromLat: fromLat,
+      fromLong:fromLong ,
+      toLat: toLat,
+      toLong: toLong,
+
+      
     }
+
+    const payload2 = {
+   
+      riderId: userId,
+     // driverId: driverId,
+      fare: fare,
+      from: from,
+      to: to,
+      fromLat: fromLat,
+      fromLong:fromLong ,
+      toLat: toLat,
+      toLong: toLong,
+
+      
+    }
+  
   
     try {
       const { data, error } = await supabase
@@ -37,6 +59,25 @@ router.post('/', async (req, res) => {
       }
 
       console.log('Data updated successfully, request underway:', data);
+
+      try {
+        const { data, error } = await supabase
+          .from('rider')
+          .update({ ride_info: payload2})
+          .eq('id', userId);
+  
+        if (error) {
+          console.error('Error updating data:', error.message);
+          return res.status(500).send({ "error": 'Failed to update' });
+        }
+  
+        console.log('Data updated successfully, request underway:', data);
+  
+  
+        res.status(200).send({ "message": "Request underway" });
+      } catch (error) {
+        res.status(500).send({ "error": 'Failed to initiate request' });
+      }
 
 
       res.status(200).send({ "message": "Request underway" });

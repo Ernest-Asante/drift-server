@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     // Fetch current rides
     const { data, error } = await supabase
       .from('rider')
-      .select('ride_payload')
+      .select('*')
       .eq('id', userId)
       .single()
 
@@ -70,14 +70,19 @@ router.post('/', async (req, res) => {
         fare: 50,
         from: data.ride_payload.from,
         to: data.ride_payload.to,
-        tripId: 0,
+        fromLat: data.ride_info.fromLat,
+        fromLong:data.ride_info.fromLat ,
+        toLat: data.ride_info.fromLat,
+        toLong: data.ride_info.fromLat,
+
+      // tripId: 0,
       
       }
 
     try {
         const { data, error } = await supabase
           .from('driver')
-          .update({ ride_request: payload})
+          .update({ ride_request: payload, request:true})
           .eq('id', nextDriverId);
   
         if (error) {

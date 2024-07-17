@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('rider')
-      .select('ongoing_ride')
+      .select('*')
       .eq('id', userId) 
      
 
@@ -24,10 +24,10 @@ router.post('/', async (req, res) => {
     }
 
     if (!data) {
-      return res.status(400).json({ message: 'Data not found' }); 
+      return res.status(400).json(data[0]); 
     }
 
-    res.status(200).json(data[0]);
+    res.status(200).json({message: "Data available"});
   } catch (error) {
     console.error('Unexpected error:', error);
     res.status(500).json({ error: 'Unexpected error' });

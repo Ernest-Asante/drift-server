@@ -47,10 +47,10 @@ const updateUserRidePayload = async (userId, updatedPayload) => {
  
 router.post('/', async(req, res) => { 
   
-  const {userId} = req.body; 
+  const {userId,latitude, longitude} = req.body; 
   try { 
     // Assuming teshieCoordinates contains the longitude and latitude of Teshie
-    const teshieCoordinates = { longitude:-1.3501, latitude:5.0843};
+    const teshieCoordinates = { longitude:longitude, latitude:latitude};
 
     // Calculate nearest distance dynamically 
     const nearestLocation = await calculateNearestDistance(teshieCoordinates);
@@ -81,7 +81,7 @@ router.post('/', async(req, res) => {
        // Create a payload to be sent to the user
     const payload = {
       nearest_drivers: results.map(driver => ({
-        driver_id: driver.driver_id,
+        driver_id: driver.driver_id,  
         driver_name: driver.driver_name,
         final_rating: driver.final_rating
       }))

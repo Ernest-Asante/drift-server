@@ -9,13 +9,13 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 router.post('/', async (req, res) => {
-  const { name, longitude, latitude } = req.body;  
+  const { name, longitude, latitude ,riderId} = req.body;  
  
   try {
     const { data, error } = await supabase 
-      .from('driver')
+      .from('rider')
       .update([{ location: `POINT(${longitude} ${latitude})`, name: name }])
-      .eq('id', 22)
+      .eq('id', riderId)
  
 
     if (error) { 

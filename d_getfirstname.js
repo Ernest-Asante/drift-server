@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('driver')
-      .select('fname')
+      .select('*')
       .eq(identity.includes('@') ? 'email' : 'phone', identity) 
       .single(); 
 
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'User not found' }); 
     }
 
-    res.status(200).json({firstName: data.fname, data: data});
+    res.status(200).json({ dataId: data.id});
     console.log(data)
   } catch (error) {
     console.error('Unexpected error:', error);
