@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('driver')
-      .update({ ride_request: null})
+      .update({ ride_request: null, request: false})
       .eq('id', driverId);
 
     if (error) {
@@ -65,7 +65,7 @@ router.post('/', async (req, res) => {
 
     const payload = {
    
-        userId: userId,
+        riderId: userId,
         driverId: nextDriverId,
         fare: 50,
         from: data.ride_payload.from,
