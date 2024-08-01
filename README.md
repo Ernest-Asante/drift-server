@@ -1,0 +1,3 @@
+IN our second year as a computer science student at KNUST, we were divided into group and tasked to clone a mobile application. My group had Uber
+I initially worked as the system analyst but later developed the frontend and backend...
+This is the server(backend) was developed in Node/Express js and supabase
