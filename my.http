@@ -1,0 +1,9 @@
+
+POST http://localhost:3001/shopverifyotp
+Content-Type: application/json 
+
+{
+    "email": "hollyghana@gmail.com" ,
+    "otp" : 6719
+    
+}  

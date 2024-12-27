@@ -30,8 +30,13 @@ const getMy = require('./my');
 const orderRide = require('./orderRide');  
 const rideRequest = require('./driverpage'); 
 const acceptRide = require('./acceptRide'); 
-const rejectRide = require('./rejectRide'); 
+const rejectRide = require('./rejectRide');  
 const riderConnect = require('./riderconnect'); 
+const shopSendOtp = require('./aa_sendOtp'); 
+const shopResendOtp = require('./aa_resendOtp'); 
+const shopVerifyOtp = require('./aa_verifyOtp'); 
+
+
 const bodyParser = require("body-parser")
 const cors = require('cors');
 // Create an instance of express 
@@ -89,3 +94,12 @@ app.use('/riderequest',rideRequest);
 app.use('/acceptride',acceptRide); 
 app.use('/rejectride',rejectRide); 
 app.use('/riderconnect',riderConnect); 
+app.use('/shopsendotp',shopSendOtp); 
+app.use('/shopresendotp',shopResendOtp); 
+app.use('/shopverifyotp',shopVerifyOtp); 
+
+
+app.post('/test', (req, res) => {
+  console.log('Request Body:', req.body);
+  res.json({ success: true, data: req.body });
+});
